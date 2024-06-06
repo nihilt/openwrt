@@ -32,6 +32,6 @@ boot() {
 	sysctl -w net.netfilter.nf_conntrack_max=32768
 	sysctl -w net.core.rmem_default=524288
 	sysctl -w net.core.wmem_default=524288
-	sysctl -w net.core.rmem_max=1573376
-	sysctl -w net.core.wmem_max=1573376
+	sysctl -w net.core.rmem_max=7500000
+	sysctl -w net.core.wmem_max=7500000
 }
