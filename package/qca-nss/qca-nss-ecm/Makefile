@@ -66,7 +66,6 @@ define AddDepends/qca-nss-ecm/Default
 	+PACKAGE_kmod-qca-nss-drv:kmod-qca-nss-drv \
 	+kmod-nf-conntrack \
 	+kmod-ipt-physdev \
-	+iptables-mod-physdev \
 	+kmod-ppp +kmod-pppoe +kmod-pptp
 endef
 
