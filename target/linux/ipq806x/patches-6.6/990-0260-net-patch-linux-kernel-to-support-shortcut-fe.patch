@@ -16,7 +16,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
 
 --- a/include/linux/skbuff.h
 +++ b/include/linux/skbuff.h
-@@ -991,6 +991,8 @@ struct sk_buff {
+@@ -988,6 +988,8 @@ struct sk_buff {
  #endif
  	/* Linear packets processed by dev_fast_xmit() */
  	__u8			fast_xmit:1;
