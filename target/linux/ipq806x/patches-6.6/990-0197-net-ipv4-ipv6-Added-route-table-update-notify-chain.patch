@@ -108,7 +108,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  static inline const void *choose_neigh_daddr(const struct in6_addr *p,
  					     struct sk_buff *skb,
  					     const void *daddr)
-@@ -3873,6 +3876,9 @@ int ip6_route_add(struct fib6_config *cf
+@@ -3910,6 +3913,9 @@ int ip6_route_add(struct fib6_config *cf
  		return PTR_ERR(rt);
  
  	err = __ip6_ins_rt(rt, &cfg->fc_nlinfo, extack);
@@ -118,7 +118,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  	fib6_info_release(rt);
  
  	return err;
-@@ -3893,7 +3899,9 @@ static int __ip6_del_rt(struct fib6_info
+@@ -3930,7 +3936,9 @@ static int __ip6_del_rt(struct fib6_info
  	spin_lock_bh(&table->tb6_lock);
  	err = fib6_del(rt, info);
  	spin_unlock_bh(&table->tb6_lock);
@@ -129,7 +129,7 @@ Signed-off-by: Murat Sezgin <msezgin@codeaurora.org>
  out:
  	fib6_info_release(rt);
  	return err;
-@@ -6372,6 +6380,18 @@ static int ip6_route_dev_notify(struct n
+@@ -6409,6 +6417,18 @@ static int ip6_route_dev_notify(struct n
  	return NOTIFY_OK;
  }
  
