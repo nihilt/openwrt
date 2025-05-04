@@ -15,7 +15,7 @@ Signed-off-by: Tallapragada Kalyan <quic_ktallapr@quicinc.com>
 
 --- a/include/linux/skbuff.h
 +++ b/include/linux/skbuff.h
-@@ -989,6 +989,8 @@ struct sk_buff {
+@@ -986,6 +986,8 @@ struct sk_buff {
  #if IS_ENABLED(CONFIG_IP_SCTP)
  	__u8			csum_not_inet:1;
  #endif
