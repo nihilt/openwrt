@@ -359,13 +359,10 @@
  	u32			limit;
  	const struct Qdisc_ops	*ops;
  	struct qdisc_size_table	__rcu *stab;
-@@ -748,6 +749,40 @@ static inline bool skb_skip_tc_classify(
- 		return true;
- 	}
- #endif
-+	return false;
-+}
-+
+@@ -752,6 +753,40 @@ static inline bool skb_skip_tc_classify(
+ 	return false;
+ }
+ 
 +/*
 + * Set skb classify bit field.
 + */
@@ -397,10 +394,13 @@
 +		return true;
 +	}
 +#endif
- 	return false;
- }
- 
-@@ -802,6 +802,11 @@ static inline void qdisc_reset_all_tx_gt(struct net_device *dev, unsigned int i)
++	return false;
++}
++
+ /* Reset all TX qdiscs greater than index of a device.  */
+ static inline void qdisc_reset_all_tx_gt(struct net_device *dev, unsigned int i)
+ {
+@@ -767,6 +802,11 @@ static inline void qdisc_reset_all_tx_gt
  	}
  }
  
