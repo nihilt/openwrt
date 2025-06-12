@@ -356,10 +356,14 @@ endif
 
 ifndef CONFIG_OPENSSL_WITH_QUIC
   OPENSSL_OPTIONS += no-quic
+else
+  OPENSSL_OPTIONS += enable-quic
 endif
 
 ifndef CONFIG_OPENSSL_WITH_KTLS
   OPENSSL_OPTIONS += no-ktls
+else
+  OPENSSL_OPTIONS += enable-ktls
 endif
 
 OPENSSL_TARGET:=linux-$(call qstrip,$(CONFIG_ARCH))-openwrt
