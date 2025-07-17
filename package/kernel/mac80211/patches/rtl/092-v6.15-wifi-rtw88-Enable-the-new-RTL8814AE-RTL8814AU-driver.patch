@@ -111,7 +111,7 @@ Link: https://patch.msgid.link/5795b0a7-511e-40b5-ac36-476b63f174c7@gmail.com
  
 --- a/local-symbols
 +++ b/local-symbols
-@@ -375,6 +375,7 @@ RTW88_8821C=
+@@ -376,6 +376,7 @@ RTW88_8821C=
  RTW88_88XXA=
  RTW88_8821A=
  RTW88_8812A=
@@ -119,7 +119,7 @@ Link: https://patch.msgid.link/5795b0a7-511e-40b5-ac36-476b63f174c7@gmail.com
  RTW88_8822BE=
  RTW88_8822BS=
  RTW88_8822BU=
-@@ -390,6 +391,8 @@ RTW88_8821CS=
+@@ -391,6 +392,8 @@ RTW88_8821CS=
  RTW88_8821CU=
  RTW88_8821AU=
  RTW88_8812AU=
