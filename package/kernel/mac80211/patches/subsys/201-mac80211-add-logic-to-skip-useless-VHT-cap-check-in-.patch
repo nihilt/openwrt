@@ -17,7 +17,7 @@ Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
 --- a/net/mac80211/vht.c
 +++ b/net/mac80211/vht.c
-@@ -442,6 +442,12 @@ ieee80211_sta_cap_chan_bw(struct link_st
+@@ -464,6 +464,12 @@ ieee80211_sta_cap_chan_bw(struct link_st
  				NL80211_CHAN_WIDTH_40 : NL80211_CHAN_WIDTH_20;
  	}
  
