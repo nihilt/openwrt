@@ -45,7 +45,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  	ieee80211_sta_reset_beacon_monitor(sdata);
  	ieee80211_sta_reset_conn_monitor(sdata);
  }
-@@ -8389,16 +8404,32 @@ void ieee80211_sta_work(struct ieee80211
+@@ -8391,16 +8406,32 @@ void ieee80211_sta_work(struct ieee80211
  	}
  }
  

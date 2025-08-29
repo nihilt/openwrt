@@ -45,7 +45,7 @@ Signed-off-by: Johannes Berg <johannes.berg@intel.com>
  	if (!ieee80211_sdata_running(sdata))
  		return;
  
-@@ -8440,36 +8434,70 @@ static void ieee80211_sta_bcn_mon_timer(
+@@ -8442,36 +8436,70 @@ static void ieee80211_sta_bcn_mon_timer(
  			 &sdata->u.mgd.beacon_connection_loss_work);
  }
  
