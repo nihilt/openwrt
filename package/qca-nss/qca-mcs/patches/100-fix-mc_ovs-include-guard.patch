@@ -1,0 +1,13 @@
+--- a/mc_ovs.h
++++ b/mc_ovs.h
+@@ -14,8 +14,8 @@
+ 
+-#ifndef _MC_OVS_H_
+-#define _MC_OVS_H
++#ifndef _MC_OVS_H_
++#define _MC_OVS_H_
+ 
+ int mc_ovs_init(void);
+ void mc_ovs_exit(void);
+ 
+ #endif
