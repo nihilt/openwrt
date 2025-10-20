@@ -11,7 +11,7 @@ PKG_SOURCE_URL:=https://git.codelinaro.org/clo/qsdk/oss/lklm/qca-nss-ecm.git
 PKG_SOURCE_DATE:=2023-07-25
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_VERSION:=9acdcb05c04ae177a79c4c34cef0487fbcedbfaa
-PKG_MIRROR_HASH:=757d923fdf933b654735c34ed9e4608eb517a8807f55c389e9282d08df3ef330
+PKG_MIRROR_HASH:=e217c5f3825d8f00e9a09da9441750222744968fbb7a70ae10d9d0c2bea74972
 PKG_BUILD_PARALLEL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -65,7 +65,6 @@ define AddDepends/qca-nss-ecm/Default
 	+@NSS_DRV_PPTP_ENABLE \
 	+PACKAGE_kmod-qca-nss-drv:kmod-qca-nss-drv \
 	+kmod-nf-conntrack \
-	+kmod-ipt-physdev \
 	+kmod-ppp +kmod-pppoe +kmod-pptp
 endef
 
