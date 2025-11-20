@@ -16,7 +16,7 @@ PKG_BUILD_PARALLEL:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/openssl/openssl.git
-PKG_SOURCE_VERSION:=daf47679a01c94b3de2a6faf6a983e9aca7bc27e
+PKG_SOURCE_VERSION:=feature/ech
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=Apache-2.0
@@ -56,7 +56,8 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_OPENSSL_WITH_SRP \
 	CONFIG_OPENSSL_WITH_SSE2 \
 	CONFIG_OPENSSL_WITH_TLS13 \
-	CONFIG_OPENSSL_WITH_WHIRLPOOL
+	CONFIG_OPENSSL_WITH_WHIRLPOOL \
+	CONFIG_OPENSSL_WITH_ECH
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/openssl-module.mk
@@ -363,6 +364,12 @@ else
   OPENSSL_OPTIONS += enable-ktls
 endif
 
+ifndef CONFIG_OPENSSL_WITH_ECH
+  OPENSSL_OPTIONS += no-ech
+else
+  OPENSSL_OPTIONS += enable-ech
+endif
+
 OPENSSL_TARGET:=linux-$(call qstrip,$(CONFIG_ARCH))-openwrt
 
 STAMP_CONFIGURED := $(STAMP_CONFIGURED)_$(shell echo $(OPENSSL_OPTIONS) | $(MKHASH) md5)
@@ -370,18 +377,18 @@ STAMP_CONFIGURED := $(STAMP_CONFIGURED)_$(shell echo $(OPENSSL_OPTIONS) | $(MKHA
 TARGET_CFLAGS += $(FPIC)
 
 define Build/Configure
-	(cd $(PKG_BUILD_DIR); \
-		CFLAGS="$(TARGET_CFLAGS)" \
-		CPPFLAGS="$(TARGET_CPPFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS)" \
-		./Configure $(OPENSSL_TARGET) \
-			--prefix=/usr \
-			--libdir=lib \
-			--openssldir=/etc/ssl \
-			--cross-compile-prefix="$(TARGET_CROSS)" \
-			$(OPENSSL_OPTIONS) && \
-		{ [ -f $(STAMP_CONFIGURED) ] || make clean; } \
-	)
+    (cd $(PKG_BUILD_DIR); \
+        CFLAGS="$(TARGET_CFLAGS)" \
+        CPPFLAGS="$(TARGET_CPPFLAGS)" \
+        LDFLAGS="$(TARGET_LDFLAGS)" \
+        ./Configure $(OPENSSL_TARGET) \
+            --prefix=/usr \
+            --libdir=lib \
+            --openssldir=/etc/ssl \
+            --cross-compile-prefix="$(TARGET_CROSS)" \
+            $(OPENSSL_OPTIONS) && \
+        { [ -f $(STAMP_CONFIGURED) ] || make clean; } \
+    )
 endef
 
 define Build/Compile
