@@ -131,6 +131,17 @@ config OPENSSL_WITH_KTLS
 		offload TLS record processing to the kernel, reducing CPU usage
 		and improving performance for high-traffic TLS connections.
 
+config OPENSSL_WITH_ECH
+	bool
+	prompt "Enable Encrypted ClientHello (ECH) support"
+	select OPENSSL_WITH_TLS13
+	help
+		Enable support for Encrypted ClientHello (ECH) in OpenSSL.
+		This requires building OpenSSL from the feature/ech branch.
+		ECH enhances privacy by encrypting sensitive parts of the TLS
+		ClientHello message, preventing passive observers from seeing
+		the requested hostname (SNI).
+
 comment "Algorithm Selection"
 
 config OPENSSL_WITH_EC2M
