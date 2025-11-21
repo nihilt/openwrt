@@ -16,7 +16,7 @@ PKG_BUILD_PARALLEL:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/openssl/openssl.git
-PKG_SOURCE_VERSION:=feature/ech
+PKG_SOURCE_VERSION:=daf47679a01c94b3de2a6faf6a983e9aca7bc27e
 PKG_MIRROR_HASH:=skip
 
 PKG_LICENSE:=Apache-2.0
