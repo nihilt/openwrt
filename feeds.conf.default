@@ -1,7 +1,7 @@
-src-git packages https://github.com/nihilt/packages.git;packages-r7800-nss-4
+src-git packages https://github.com/nihilt/packages.git;packages-r7800-nss-3
 src-git luci https://github.com/nihilt/luci.git;luci-main-vht-nss-3
-src-git routing https://git.openwrt.org/feed/routing.git
-src-git telephony https://git.openwrt.org/feed/telephony.git
+src-git routing https://github.com/openwrt/routing.git
+src-git telephony https://github.com/openwrt/telephony.git
 src-git video https://github.com/openwrt/video.git
 src-git sqm_scripts_nss https://github.com/nihilt/sqm-scripts-nss.git
 #src-git targets https://github.com/openwrt/targets.git
