@@ -956,7 +956,7 @@ struct lq_aes_alg {
 };
 
 /* AES supported algo array */
-static const struct lq_aes_alg aes_drivers_alg[] = {
+static struct lq_aes_alg aes_drivers_alg[] = {
      {
          .alg = {
            .cra_name 	    = "aes",

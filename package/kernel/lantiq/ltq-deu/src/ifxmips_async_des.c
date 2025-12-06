@@ -754,7 +754,7 @@ struct lq_des_alg {
 };
 
 /* DES Supported algo array */
-static const struct lq_des_alg des_drivers_alg [] = {
+static struct lq_des_alg des_drivers_alg [] = {
     {
         .alg = {
             .cra_name        = "des",
