@@ -8,16 +8,20 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=openssl
-PKG_VERSION:=4.0.0
+PKG_VERSION:=3.5.4
 PKG_RELEASE:=1
 PKG_BUILD_FLAGS:=no-mips16 gc-sections no-lto
 
 PKG_BUILD_PARALLEL:=1
 
-PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/openssl/openssl.git
-PKG_SOURCE_VERSION:=daf47679a01c94b3de2a6faf6a983e9aca7bc27e
-PKG_MIRROR_HASH:=skip
+PKG_BASE:=$(subst $(space),.,$(wordlist 1,2,$(subst .,$(space),$(PKG_VERSION))))
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:= \
+	https://www.openssl.org/source/ \
+	https://www.openssl.org/source/old/$(PKG_BASE)/ \
+	https://github.com/openssl/openssl/releases/download/$(PKG_NAME)-$(PKG_VERSION)/
+
+PKG_HASH:=967311f84955316969bdb1d8d4b983718ef42338639c621ec4c34fddef355e99
 
 PKG_LICENSE:=Apache-2.0
 PKG_LICENSE_FILES:=LICENSE.txt
@@ -56,8 +60,7 @@ PKG_CONFIG_DEPENDS:= \
 	CONFIG_OPENSSL_WITH_SRP \
 	CONFIG_OPENSSL_WITH_SSE2 \
 	CONFIG_OPENSSL_WITH_TLS13 \
-	CONFIG_OPENSSL_WITH_WHIRLPOOL \
-	CONFIG_OPENSSL_WITH_ECH
+	CONFIG_OPENSSL_WITH_WHIRLPOOL
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/openssl-module.mk
@@ -364,12 +367,6 @@ else
   OPENSSL_OPTIONS += enable-ktls
 endif
 
-ifndef CONFIG_OPENSSL_WITH_ECH
-  OPENSSL_OPTIONS += no-ech
-else
-  OPENSSL_OPTIONS += enable-ech
-endif
-
 OPENSSL_TARGET:=linux-$(call qstrip,$(CONFIG_ARCH))-openwrt
 
 STAMP_CONFIGURED := $(STAMP_CONFIGURED)_$(shell echo $(OPENSSL_OPTIONS) | $(MKHASH) md5)
@@ -377,18 +374,18 @@ STAMP_CONFIGURED := $(STAMP_CONFIGURED)_$(shell echo $(OPENSSL_OPTIONS) | $(MKHA
 TARGET_CFLAGS += $(FPIC)
 
 define Build/Configure
-    (cd $(PKG_BUILD_DIR); \
-        CFLAGS="$(TARGET_CFLAGS)" \
-        CPPFLAGS="$(TARGET_CPPFLAGS)" \
-        LDFLAGS="$(TARGET_LDFLAGS)" \
-        ./Configure $(OPENSSL_TARGET) \
-            --prefix=/usr \
-            --libdir=lib \
-            --openssldir=/etc/ssl \
-            --cross-compile-prefix="$(TARGET_CROSS)" \
-            $(OPENSSL_OPTIONS) && \
-        { [ -f $(STAMP_CONFIGURED) ] || make clean; } \
-    )
+	(cd $(PKG_BUILD_DIR); \
+		CFLAGS="$(TARGET_CFLAGS)" \
+		CPPFLAGS="$(TARGET_CPPFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS)" \
+		./Configure $(OPENSSL_TARGET) \
+			--prefix=/usr \
+			--libdir=lib \
+			--openssldir=/etc/ssl \
+			--cross-compile-prefix="$(TARGET_CROSS)" \
+			$(OPENSSL_OPTIONS) && \
+		{ [ -f $(STAMP_CONFIGURED) ] || make clean; } \
+	)
 endef
 
 define Build/Compile
